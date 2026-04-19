@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?426713f9b841e5bc322f2450b36c2346";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>产品详情 - TechPro</title>
@@ -20,7 +30,7 @@
         /* 导航栏样式 */
         nav {
             background: #ffffff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -462,6 +472,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <nav>
@@ -501,7 +512,7 @@
             <!-- 产品信息 -->
             <div class="product-info">
                 <h1 class="product-title" id="product-name">UltraBook Pro 15</h1>
-                
+
                 <div class="product-rating">
                     <span class="rating-stars">★★★★★</span>
                     <span class="rating-count">2,345条用户评价</span>
@@ -696,14 +707,14 @@
         function initProduct() {
             const productId = getProductId();
             const product = products[productId];
-            
+
             if (product) {
                 document.getElementById('product-name').textContent = product.name;
                 document.getElementById('current-price').textContent = '¥' + product.price.toLocaleString();
                 document.getElementById('original-price').textContent = '¥' + product.original.toLocaleString();
                 document.getElementById('breadcrumb-name').textContent = product.name;
                 document.getElementById('main-image').textContent = product.icon;
-                
+
                 // 更新缩略图
                 const thumbnails = document.querySelectorAll('.thumbnail');
                 thumbnails[0].textContent = product.icon;
@@ -743,7 +754,7 @@
             const selectedSpecs = Array.from(document.querySelectorAll('.spec-option.selected'))
                 .map(opt => opt.textContent)
                 .join(' / ');
-            
+
             // 记录购买信息到localStorage用于感谢页面显示
             const orderData = {
                 productId: productId,
@@ -753,7 +764,7 @@
                 price: products[productId].price,
                 total: products[productId].price * quantity
             };
-            
+
             localStorage.setItem('currentOrder', JSON.stringify(orderData));
             alert('订单已生成，正在跳转到支付页面...');
             window.location.href = 'thank-you.html?from=buy';
@@ -763,7 +774,7 @@
         function addToCart() {
             const quantity = document.getElementById('quantity').value;
             const productId = getProductId();
-            
+
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             const cartItem = {
                 productId: productId,
@@ -772,7 +783,7 @@
                 price: products[productId].price,
                 timestamp: new Date().getTime()
             };
-            
+
             // 检查购物车中是否已有该产品
             const existingItem = cart.find(item => item.productId === productId);
             if (existingItem) {
@@ -780,7 +791,7 @@
             } else {
                 cart.push(cartItem);
             }
-            
+
             localStorage.setItem('cart', JSON.stringify(cart));
             alert(`已将${quantity}件${products[productId].name}加入购物车！`);
         }
@@ -789,4 +800,5 @@
         document.addEventListener('DOMContentLoaded', initProduct);
     </script>
 </body>
+
 </html>

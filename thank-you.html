@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?426713f9b841e5bc322f2450b36c2346";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>感谢您 - TechPro</title>
@@ -23,7 +33,7 @@
         /* 导航栏样式 */
         nav {
             background: #ffffff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         nav .container {
@@ -92,7 +102,7 @@
         .success-container {
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: 60px 40px;
             text-align: center;
             max-width: 600px;
@@ -104,6 +114,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -121,9 +132,11 @@
                 transform: scale(0);
                 opacity: 0;
             }
+
             50% {
                 transform: scale(1.1);
             }
+
             100% {
                 transform: scale(1);
                 opacity: 1;
@@ -412,6 +425,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <nav>
@@ -546,10 +560,10 @@
         // 显示订单信息
         function displayOrderInfo(now) {
             const orderData = JSON.parse(localStorage.getItem('currentOrder'));
-            
+
             if (orderData) {
                 document.getElementById('main-title').textContent = '订单已生成！';
-                document.getElementById('main-description').textContent = 
+                document.getElementById('main-description').textContent =
                     '感谢您的购买！订单已提交，我们将在2-3个工作日内为您安排配送。';
 
                 const infoHtml = `
@@ -596,10 +610,10 @@
         // 显示联系表单信息
         function displayContactInfo(now) {
             const contactData = JSON.parse(localStorage.getItem('contactData'));
-            
+
             if (contactData) {
                 document.getElementById('main-title').textContent = '感谢您的反馈！';
-                document.getElementById('main-description').textContent = 
+                document.getElementById('main-description').textContent =
                     '我们已收到您的信息，感谢您的宝贵意见。我们的客服团队将在24小时内与您联系。';
 
                 const infoHtml = `
@@ -692,4 +706,5 @@
         document.addEventListener('DOMContentLoaded', initPage);
     </script>
 </body>
+
 </html>
