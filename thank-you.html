@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>感谢您 - TechPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK SC', sans-serif;
+            color: #333;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 导航栏样式 */
+        nav {
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0078d4;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #0078d4;
+        }
+
+        nav .contact-btn {
+            background: #0078d4;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        nav .contact-btn:hover {
+            background: #005a9e;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 主要内容区域 */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* 感谢区域 */
+        .success-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 600px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounceIn 0.6s ease-out 0.2s both;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .success-description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* 订单/反馈信息 */
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #0078d4;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+            color: #666;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .info-value {
+            color: #0078d4;
+            font-weight: 500;
+        }
+
+        /* 转化漏斗 */
+        .funnel-section {
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 2px solid #e0e0e0;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .funnel-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .funnel-stages {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .funnel-stage {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding: 0 10px;
+        }
+
+        .stage-bar {
+            height: 60px;
+            background: linear-gradient(135deg, #e8f4ff, #b3d9ff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #0078d4;
+            font-size: 20px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stage-bar.active {
+            background: linear-gradient(135deg, #0078d4, #004a96);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 120, 212, 0.3);
+        }
+
+        .stage-bar.completed {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white;
+        }
+
+        .stage-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .funnel-connector {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            transform: translateX(-50%);
+            color: #ddd;
+            font-size: 20px;
+            z-index: 1;
+        }
+
+        /* 按钮组 */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #0078d4;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #005a9e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 120, 212, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #e8e8e8;
+            border-color: #0078d4;
+            color: #0078d4;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #222;
+            color: #999;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* 时间线风格 */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #0078d4;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #0078d4;
+        }
+
+        .timeline-item.completed::before {
+            background: #4caf50;
+            box-shadow: 0 0 0 2px #4caf50;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 20px;
+            width: 2px;
+            height: 40px;
+            background: #ddd;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .timeline-time {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 40px 20px;
+            }
+
+            .success-title {
+                font-size: 28px;
+            }
+
+            .success-icon {
+                font-size: 60px;
+            }
+
+            .funnel-stages {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .funnel-stage {
+                flex: 0 0 calc(50% - 7.5px);
+            }
+
+            .funnel-connector {
+                display: none;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">TechPro</a>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="index.html#category">产品</a></li>
+                <li><a href="contact.html" class="contact-btn">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main>
+        <div class="success-container">
+            <div class="success-icon">✓</div>
+            <h1 class="success-title" id="main-title">感谢您的提交！</h1>
+            <p class="success-description" id="main-description">
+                我们已收到您的信息，将在24小时内与您联系。
+            </p>
+
+            <!-- 订单/反馈信息显示区域 -->
+            <div id="info-display"></div>
+
+            <!-- 转化漏斗分析 -->
+            <div class="funnel-section">
+                <div class="funnel-title">🔄 您的转化旅程</div>
+                <div class="funnel-stages">
+                    <div class="funnel-stage">
+                        <div class="stage-bar completed">1</div>
+                        <div class="stage-label">浏览产品</div>
+                    </div>
+                    <div class="funnel-connector">→</div>
+                    <div class="funnel-stage">
+                        <div class="stage-bar completed">2</div>
+                        <div class="stage-label">了解详情</div>
+                    </div>
+                    <div class="funnel-connector">→</div>
+                    <div class="funnel-stage">
+                        <div class="stage-bar active">3</div>
+                        <div class="stage-label">转化完成</div>
+                    </div>
+                </div>
+
+                <!-- 详细转化时间线 -->
+                <div style="margin-top: 30px;">
+                    <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 15px; text-align: left;">转化详情：</h3>
+                    <div class="timeline">
+                        <div class="timeline-item completed">
+                            <div class="timeline-content">
+                                <div class="timeline-title">访问首页</div>
+                                <div class="timeline-time" id="timeline-visit">2024-04-04 14:32:15</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item completed">
+                            <div class="timeline-content">
+                                <div class="timeline-title">浏览产品</div>
+                                <div class="timeline-time" id="timeline-browse">2024-04-04 14:35:42</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item completed">
+                            <div class="timeline-content">
+                                <div class="timeline-title">查看详情/提交表单</div>
+                                <div class="timeline-time" id="timeline-detail">2024-04-04 14:38:20</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item completed">
+                            <div class="timeline-content">
+                                <div class="timeline-title">完成转化</div>
+                                <div class="timeline-time" id="timeline-convert">2024-04-04 14:39:05</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 按钮组 -->
+            <div class="button-group">
+                <a href="index.html" class="btn btn-primary">返回首页</a>
+                <a href="index.html#featured" class="btn btn-secondary">继续浏览产品</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2024 TechPro 科技产品官方网站 | 版权所有</p>
+        <p>服务热线：400-888-8888 | 邮箱：support@techpro.com</p>
+        <p>ICP备案号：京ICP备2024000000号</p>
+    </footer>
+
+    <script>
+        // 产品数据
+        const products = {
+            1: { name: 'UltraBook Pro 15' },
+            2: { name: 'PowerDesk Elite' },
+            3: { name: 'SmartTab X' },
+            4: { name: 'SoundMax Pro' },
+            5: { name: 'SmartWatch Series 5' },
+            6: { name: 'FastCharge Hub' }
+        };
+
+        // 获取URL参数
+        function getUrlParam(param) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(param);
+        }
+
+        // 格式化时间
+        function formatTime(date) {
+            return date.toLocaleString('zh-CN');
+        }
+
+        // 初始化页面
+        function initPage() {
+            const fromPage = getUrlParam('from');
+            const now = new Date();
+
+            if (fromPage === 'buy') {
+                // 来自产品购买页面
+                displayOrderInfo(now);
+            } else if (fromPage === 'contact') {
+                // 来自联系表单页面
+                displayContactInfo(now);
+            }
+
+            // 更新时间线时间
+            updateTimeline(now);
+        }
+
+        // 显示订单信息
+        function displayOrderInfo(now) {
+            const orderData = JSON.parse(localStorage.getItem('currentOrder'));
+            
+            if (orderData) {
+                document.getElementById('main-title').textContent = '订单已生成！';
+                document.getElementById('main-description').textContent = 
+                    '感谢您的购买！订单已提交，我们将在2-3个工作日内为您安排配送。';
+
+                const infoHtml = `
+                    <div class="info-box">
+                        <h3>📦 订单详情</h3>
+                        <div class="info-item">
+                            <span class="info-label">订单号：</span>
+                            <span class="info-value">#${generateOrderId()}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">产品：</span>
+                            <span class="info-value">${orderData.productName}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">规格：</span>
+                            <span class="info-value">${orderData.specs}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">数量：</span>
+                            <span class="info-value">${orderData.quantity}件</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">单价：</span>
+                            <span class="info-value">¥${orderData.price.toLocaleString()}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">合计：</span>
+                            <span class="info-value" style="font-size: 18px; color: #ff6b6b;">¥${(orderData.total).toLocaleString()}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">订单状态：</span>
+                            <span class="info-value">✓ 已提交</span>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('info-display').innerHTML = infoHtml;
+
+                // 清除订单数据
+                localStorage.removeItem('currentOrder');
+            }
+        }
+
+        // 显示联系表单信息
+        function displayContactInfo(now) {
+            const contactData = JSON.parse(localStorage.getItem('contactData'));
+            
+            if (contactData) {
+                document.getElementById('main-title').textContent = '感谢您的反馈！';
+                document.getElementById('main-description').textContent = 
+                    '我们已收到您的信息，感谢您的宝贵意见。我们的客服团队将在24小时内与您联系。';
+
+                const infoHtml = `
+                    <div class="info-box">
+                        <h3>💌 反馈信息</h3>
+                        <div class="info-item">
+                            <span class="info-label">提交人：</span>
+                            <span class="info-value">${contactData.name}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">邮箱：</span>
+                            <span class="info-value">${contactData.email}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">咨询类别：</span>
+                            <span class="info-value">${getCategoryLabel(contactData.category)}</span>
+                        </div>
+                        ${contactData.phone ? `
+                        <div class="info-item">
+                            <span class="info-label">电话：</span>
+                            <span class="info-value">${contactData.phone}</span>
+                        </div>
+                        ` : ''}
+                        <div class="info-item">
+                            <span class="info-label">优先级：</span>
+                            <span class="info-value">${getPriorityLabel(contactData.priority)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">提交时间：</span>
+                            <span class="info-value">${contactData.submittedAt}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">反馈内容：</span>
+                            <span class="info-value" style="display: block; margin-top: 8px; white-space: pre-wrap; text-align: left;">
+                                "${contactData.message.substring(0, 100)}${contactData.message.length > 100 ? '...' : ''}"
+                            </span>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('info-display').innerHTML = infoHtml;
+
+                // 清除联系数据
+                localStorage.removeItem('contactData');
+            }
+        }
+
+        // 生成订单ID
+        function generateOrderId() {
+            return Math.random().toString(36).substring(2, 15).toUpperCase() + new Date().getTime().toString().slice(-6);
+        }
+
+        // 获取类别标签
+        function getCategoryLabel(category) {
+            const labels = {
+                sales: '销售咨询',
+                support: '技术支持',
+                complaint: '投诉反馈',
+                partnership: '合作洽谈',
+                other: '其他'
+            };
+            return labels[category] || category;
+        }
+
+        // 获取优先级标签
+        function getPriorityLabel(priority) {
+            const labels = {
+                low: '低 - 一般咨询',
+                medium: '中 - 有具体问题',
+                high: '高 - 紧急问题'
+            };
+            return labels[priority] || priority;
+        }
+
+        // 更新时间线
+        function updateTimeline(now) {
+            // 计算各个时间戳
+            const visitTime = new Date(now.getTime() - 7 * 60000); // 7分钟前
+            const browseTime = new Date(now.getTime() - 4 * 60000); // 4分钟前
+            const detailTime = new Date(now.getTime() - 1.5 * 60000); // 1.5分钟前
+            const convertTime = now;
+
+            document.getElementById('timeline-visit').textContent = formatTime(visitTime);
+            document.getElementById('timeline-browse').textContent = formatTime(browseTime);
+            document.getElementById('timeline-detail').textContent = formatTime(detailTime);
+            document.getElementById('timeline-convert').textContent = formatTime(convertTime);
+        }
+
+        // 页面加载完毕后初始化
+        document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+</body>
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - TechPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK SC', sans-serif;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* 导航栏样式 */
+        nav {
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0078d4;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #0078d4;
+        }
+
+        nav .contact-btn {
+            background: #0078d4;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        nav .contact-btn:hover {
+            background: #005a9e;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 页面标题 */
+        .page-header {
+            background: linear-gradient(135deg, #0078d4 0%, #50e6ff 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        /* 联系方式卡片 */
+        .contact-info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px auto;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .info-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .info-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .info-card a {
+            color: #0078d4;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* 表单区域 */
+        .form-section {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            margin: 60px auto 60px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-section h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            color: #333;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0078d4;
+            box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* 复选框和单选框样式 */
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .checkbox-group label,
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+
+        .checkbox-group input,
+        .radio-group input {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        /* 提交按钮 */
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #0078d4;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #005a9e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 120, 212, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #e8e8e8;
+            border-color: #0078d4;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* 错误和成功提示 */
+        .error-message {
+            color: #d32f2f;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: #d32f2f;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #222;
+            color: #999;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* 加载状态 */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .contact-info-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">TechPro</a>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="index.html#category">产品</a></li>
+                <li><a href="contact.html" class="contact-btn">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>联系我们</h1>
+            <p>有任何问题或建议？我们随时准备为您服务</p>
+        </div>
+    </section>
+
+    <!-- 联系方式卡片 -->
+    <section class="contact-info-section container">
+        <div class="info-card">
+            <div class="info-icon">📞</div>
+            <h3>电话支持</h3>
+            <p>拨打我们的服务热线<br>
+            <strong>400-888-8888</strong><br>
+            工作时间：周一至周五 09:00-18:00</p>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon">📧</div>
+            <h3>邮件联系</h3>
+            <p>发送邮件至<br>
+            <a href="mailto:support@techpro.com"><strong>support@techpro.com</strong></a><br>
+            我们会在24小时内回复</p>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon">💬</div>
+            <h3>在线客服</h3>
+            <p>点击右下角客服按钮<br>
+            即时对话<br>
+            工作时间：周一至周日 08:00-22:00</p>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon">📍</div>
+            <h3>公司地址</h3>
+            <p>北京市朝阳区高科技园区<br>
+            TechPro总部大楼B座1008室<br>
+            邮编：100000</p>
+        </div>
+    </section>
+
+    <!-- 联系表单 -->
+    <section class="form-section container">
+        <h2>给我们留言</h2>
+        <form id="contact-form" onsubmit="handleSubmit(event)">
+            <!-- 基本信息 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">姓名 <span style="color: red;">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                    <span class="error-message">请输入您的姓名</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱 <span style="color: red;">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message">请输入有效的邮箱地址</span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">电话</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="company">公司名称</label>
+                    <input type="text" id="company" name="company">
+                </div>
+            </div>
+
+            <!-- 咨询类别 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="category">咨询类别 <span style="color: red;">*</span></label>
+                    <select id="category" name="category" required>
+                        <option value="">请选择咨询类别</option>
+                        <option value="sales">销售咨询</option>
+                        <option value="support">技术支持</option>
+                        <option value="complaint">投诉反馈</option>
+                        <option value="partnership">合作洽谈</option>
+                        <option value="other">其他</option>
+                    </select>
+                    <span class="error-message">请选择咨询类别</span>
+                </div>
+                <div class="form-group">
+                    <label for="product">感兴趣的产品</label>
+                    <select id="product" name="product">
+                        <option value="">请选择产品</option>
+                        <option value="laptop">笔记本电脑</option>
+                        <option value="desktop">台式电脑</option>
+                        <option value="mobile">移动设备</option>
+                        <option value="accessories">配件周边</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 优先级 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>问题优先级</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="priority" value="low" checked>
+                            低 - 一般咨询
+                        </label>
+                        <label>
+                            <input type="radio" name="priority" value="medium">
+                            中 - 有具体问题
+                        </label>
+                        <label>
+                            <input type="radio" name="priority" value="high">
+                            高 - 紧急问题
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>反馈方式</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="contact-method" value="email" checked>
+                            邮件回复
+                        </label>
+                        <label>
+                            <input type="checkbox" name="contact-method" value="phone">
+                            电话回复
+                        </label>
+                        <label>
+                            <input type="checkbox" name="contact-method" value="wechat">
+                            微信回复
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 留言内容 -->
+            <div class="form-row full">
+                <div class="form-group">
+                    <label for="message">留言内容 <span style="color: red;">*</span></label>
+                    <textarea id="message" name="message" placeholder="请详细描述您的问题或建议..." required></textarea>
+                    <span class="error-message">请输入留言内容（至少10个字符）</span>
+                </div>
+            </div>
+
+            <!-- 附件（可选） -->
+            <div class="form-row full">
+                <div class="form-group">
+                    <label for="attachment">上传附件（可选）</label>
+                    <input type="file" id="attachment" name="attachment">
+                    <p style="font-size: 12px; color: #999; margin-top: 5px;">支持格式：JPG、PNG、PDF（最大5MB）</p>
+                </div>
+            </div>
+
+            <!-- 协议同意 -->
+            <div class="form-row full">
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 8px; font-weight: 600; color: #333;">
+                        <input type="checkbox" name="agree" id="agree" required>
+                        <span>我已阅读并同意<a href="#" style="color: #0078d4;">隐私政策</a>和<a href="#" style="color: #0078d4;">服务条款</a> <span style="color: red;">*</span></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 提交按钮 -->
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">提交反馈</button>
+                <button type="reset" class="btn btn-secondary">清空表单</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2024 TechPro 科技产品官方网站 | 版权所有</p>
+        <p>服务热线：400-888-8888 | 邮箱：support@techpro.com</p>
+        <p>ICP备案号：京ICP备2024000000号</p>
+    </footer>
+
+    <script>
+        // 表单验证函数
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const category = document.getElementById('category').value;
+            const message = document.getElementById('message').value.trim();
+            const agree = document.getElementById('agree').checked;
+
+            let isValid = true;
+
+            // 验证姓名
+            if (name === '') {
+                markFieldError('name', true);
+                isValid = false;
+            } else {
+                markFieldError('name', false);
+            }
+
+            // 验证邮箱
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                markFieldError('email', true);
+                isValid = false;
+            } else {
+                markFieldError('email', false);
+            }
+
+            // 验证类别
+            if (category === '') {
+                markFieldError('category', true);
+                isValid = false;
+            } else {
+                markFieldError('category', false);
+            }
+
+            // 验证留言
+            if (message === '' || message.length < 10) {
+                markFieldError('message', true);
+                isValid = false;
+            } else {
+                markFieldError('message', false);
+            }
+
+            // 验证协议
+            if (!agree) {
+                alert('请先同意隐私政策和服务条款');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // 标记字段错误状态
+        function markFieldError(fieldId, hasError) {
+            const field = document.getElementById(fieldId);
+            const formGroup = field.closest('.form-group');
+            
+            if (hasError) {
+                formGroup.classList.add('error');
+            } else {
+                formGroup.classList.remove('error');
+            }
+        }
+
+        // 处理表单提交
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            if (!validateForm()) {
+                return;
+            }
+
+            // 获取表单数据
+            const formData = new FormData(document.getElementById('contact-form'));
+            const contactData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                company: formData.get('company'),
+                category: formData.get('category'),
+                product: formData.get('product'),
+                priority: formData.get('priority'),
+                message: formData.get('message'),
+                submittedAt: new Date().toLocaleString()
+            };
+
+            // 保存到localStorage（用于在感谢页面显示）
+            localStorage.setItem('contactData', JSON.stringify(contactData));
+
+            // 显示加载状态
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> 提交中...';
+
+            // 模拟提交延迟（实际项目中这里会是真实的API调用）
+            setTimeout(() => {
+                // 重定向到感谢页面
+                window.location.href = 'thank-you.html?from=contact';
+            }, 1500);
+        }
+
+        // 页面加载时的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('联系页面已加载');
+        });
+    </script>
+</body>
+</html>
